@@ -2,6 +2,9 @@ from flask import Flask,request
 from PIL import Image
 import cv2
 import os
+from facerecog import recognize
+import numpy as np
+
 
 app = Flask(__name__)
 
@@ -39,19 +42,14 @@ def enroll():
     return f"Saved image for face_ref_id {face_ref_id} at {image_path}"
     
 
-    
-    
-        
-    
-    
-
-
 
 
 @app.route('/findfromdb',methods=['POST'])
 def findfromdb():
-    pass
-
+    image = Image.open(request.files['file'])
+    imgarr = np.array(image)
+    
+    return recognize(DB_PATH,imgarr)
 
 @app.route('/verify',methods=['POST'])
 def verify():
