@@ -53,9 +53,10 @@ def findfromdb():
 
 @app.route('/verify',methods=['POST'])
 def verify():
-    pass
+    image = request.files['file']
+
 
 
 @app.route('/spoof',methods=['POST'])
-def verfiy():
+def spoof():
     pass
