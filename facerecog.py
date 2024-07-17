@@ -21,7 +21,7 @@ def recognize(database,imagetofind):
             print(dfs[0].iloc[0][0], 'dataframe is not empty ')
 
 
-            # print("the dfs contains", dfs)
+            print("the dfs contains", dfs)
 
             directory_path = os.path.dirname(dfs[0].iloc[0][0])
             # print("directory path", directory_path)

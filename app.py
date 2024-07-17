@@ -5,6 +5,7 @@ import os
 from facerecog import recognize
 import numpy as np
 from faceverify import compare_images
+from facesearch import search
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ DB_PATH = os.path.join(os.getcwd(),'FaceDatabase')
 def rspns():
     return "success"
 
+#enroll a new person
 @app.route('/enroll', methods=['POST'])
 def enroll():
     if not os.path.isdir(DB_PATH):
@@ -46,8 +48,14 @@ def enroll():
 def findfromdb():
     image = Image.open(request.files['file'])
     imgarr = np.array(image)
-    
-    return recognize(DB_PATH,imgarr)
+    result = recognize(DB_PATH,imgarr)
+    print("the fooking result is :", result)
+    if result:
+        if result is not None or result is not 2  and result :
+            return result,200
+    else:
+        
+        return "false",402 
 
 
 #verify faces
@@ -77,3 +85,14 @@ def verify():
 @app.route('/facesearch',methods=['POST'])
 def facesearch():
     
+    
+    image = Image.open(request.files['file'])
+    imgarr = np.array(image)
+    result = search(DB_PATH,imgarr)
+    print("the fooking result is :", result)
+    if result:
+        if result is not None or result is not 2  and result :
+            return result,200
+    else:
+        
+        return "false",402 
