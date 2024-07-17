@@ -4,7 +4,7 @@ import cv2
 import os
 from facerecog import recognize
 import numpy as np
-
+from faceverify import compare_images
 
 app = Flask(__name__)
 
@@ -41,9 +41,7 @@ def enroll():
     
     return f"Saved image for face_ref_id {face_ref_id} at {image_path}"
     
-
-
-
+#find from db
 @app.route('/findfromdb',methods=['POST'])
 def findfromdb():
     image = Image.open(request.files['file'])
@@ -51,12 +49,31 @@ def findfromdb():
     
     return recognize(DB_PATH,imgarr)
 
+
+#verify faces
 @app.route('/verify',methods=['POST'])
 def verify():
-    image = request.files['file']
+    image1 = request.files['file']
+    image1 = Image.open(image1)
+    image1 = np.array(image1)
+    face_ref_id = request.form.get('face_ref_id')
+    
+    imagefolder = os.path.join(DB_PATH,str(face_ref_id))
+    
+    
+    if os.path.isdir(imagefolder):
+        if len(os.listdir(imagefolder)) >0:
+            imagepath = os.path.join(imagefolder,'0.jpeg')
+            image2 = Image.open(imagepath)
+            image2 = np.array(image2)
+            return compare_images(image1,image2)
+            
+            
+            
+    
+    
 
 
-
-@app.route('/spoof',methods=['POST'])
-def spoof():
-    pass
+@app.route('/facesearch',methods=['POST'])
+def facesearch():
+    
