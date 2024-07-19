@@ -6,7 +6,7 @@ from facerecog import recognize
 import numpy as np
 from faceverify import compare_images
 from facesearch import search
-
+from faceanalyze import analyze
 app = Flask(__name__)
 
 DB_PATH = os.path.join(os.getcwd(),'FaceDatabase')
@@ -40,8 +40,12 @@ def enroll():
     
     image_path = os.path.join(face_ref_path,'{}.jpeg'.format(listdir) )
     image.save(image_path, format='JPEG')
+    analyzed_data = analyze(image_path)
     
-    return f"Saved image for face_ref_id {face_ref_id} at {image_path}"
+    return {
+        'face_metrics':analyzed_data,
+        'face_ref_id': face_ref_id
+    }
     
 #find from db
 @app.route('/findfromdb',methods=['POST'])
@@ -51,7 +55,7 @@ def findfromdb():
     result = recognize(DB_PATH,imgarr)
     print("the fooking result is :", result)
     if result:
-        if result is not None or result is not 2  and result :
+        if result is not None or result != 2  and result :
             return result,200
     else:
         
@@ -78,9 +82,6 @@ def verify():
             
             
             
-    
-    
-
 
 @app.route('/facesearch',methods=['POST'])
 def facesearch():

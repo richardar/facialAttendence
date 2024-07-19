@@ -9,9 +9,9 @@ def recognize(database,imagetofind):
   
         
         if not len(os.listdir(database)) :
-            return False
+            return False,
                 
-        dfs = DeepFace.find(img_path = imagetofind, db_path = os.path.join(database) ,threshold=0.3,enforce_detection=False)
+        dfs = DeepFace.find(img_path = imagetofind, db_path = os.path.join(database) ,threshold=0.3,enforce_detection=False,model_name="ArcFace",detector_backend="retinaface")
 
         # print(dfs)
         # maindf = dfs[0]
