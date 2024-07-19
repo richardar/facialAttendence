@@ -1,4 +1,4 @@
-import deepface
+from deepface import DeepFace
 
 
 def analyze(imgpath):
