@@ -96,4 +96,11 @@ def facesearch():
             return result,200
     else:
         
-        return "false",402 
+        return "false",402
+    
+
+
+@app.route('/faceanalyze')
+def faceanalyze():
+    image = Image.open(request.files['file'])
+    
