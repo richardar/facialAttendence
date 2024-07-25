@@ -24,7 +24,7 @@ To get started with the Facial Attendance API, follow these simple steps:
 
 1. Clone the repository to your local machine:
      ```
-     git clone https://github.com/your-username/facial-attendance-api.git
+     git clone https://github.com/richardar/facial-attendance-api.git
      ```
 
 2. Install the required packages by running the following command:
