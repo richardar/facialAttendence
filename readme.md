@@ -2,7 +2,7 @@
 # Facial Attendance API
 
 Welcome to the Facial Attendance API! This open-source project is designed to provide advanced facial recognition functionalities. Whether you're building a attendance management system or a security application, this API has got you covered.
-![ FacialAttendence Cover Image](images/image.png)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
