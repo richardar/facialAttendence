@@ -15,6 +15,7 @@ def recognize(database, imagetofind):
         2: If an exception occurs during the recognition process.
     """
     # Get the list of folders in the database directory
+    
     folders = os.listdir(database)
 
     try:

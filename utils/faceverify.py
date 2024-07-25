@@ -11,8 +11,12 @@ def compare_images(image1_path, image2_path):
     Returns:
         dict: A dictionary containing the result of the image comparison.
     """
-    
-    result = DeepFace.verify(image1_path, image2_path,anti_spoofing=True,enforce_detection=False,model_name="ArcFace",detector_backend="retinaface")
+    try:
+        result = DeepFace.verify(image1_path, image2_path, anti_spoofing=True, enforce_detection=False, model_name="ArcFace", detector_backend="retinaface")
+    except Exception as e:
+        # Handle the exception here
+        print(f"An error occurred: {str(e)}")
+        result = None
     return result
 
 
