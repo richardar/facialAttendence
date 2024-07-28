@@ -36,7 +36,14 @@ To get started with the Facial Attendance API, follow these simple steps:
      ```
      flask run
      ```
-
+4. (Optional) Run  as Docker container instead
+    ```
+    docker build -t facialAttendence .
+    ```
+    
+    ```
+    docker run -p 0.0.0.0:5000:5000 facialAttendence
+ 
 Congratulations! You have successfully set up the Facial Attendance API on your local machine.
 
 ## API Functionality
